@@ -7,16 +7,25 @@ const url = 'https://sbpaymentservices.payfort.com/FortAPI/paymentApi';
 const { ACCESS_CODE, MERCHANT_IDENTIFIER, REQUEST_PHRASE } = process.env;
 
 const requestParams = {
-    service_command: 'SDK_TOKEN',
+    command: 'AUTHORIZATION',
     access_code: ACCESS_CODE,
     merchant_identifier: MERCHANT_IDENTIFIER,
+    merchant_reference: 'XYZ9239-yu898',
+    amount: '100',
+    currency: 'EGP',
     language: 'en',
-    device_id: 'ffffffff-a9fa-0b44-7b27-29e70033c587',
+    customer_email: 'elsayedzaki24@gmail.com',
+    order_description: 'test',
+    payment_option: 'VISA',
+    card_number: '4005550000000001'
+    // device_id: 'ffffffff-a9fa-0b44-7b27-29e70033c587',
 };
+// print the request params as a json object
+// console.log(JSON.stringify(requestParams, null, 2) + '\n\n');
 
 const generateSignature = (requestParams, requestPhrase) => {
     const sortedParams = Object.keys(requestParams).sort().reduce((acc, key) => {
-        console.log(`acc: ${JSON.stringify(acc)} } key: ${key}`)
+        // console.log(`acc: ${JSON.stringify(acc)} } key: ${key}`)
         acc[key] = requestParams[key];
         return acc;
     }, {});
